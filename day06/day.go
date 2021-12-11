@@ -26,7 +26,7 @@ func (d Day) process(data string) string {
 
 	return fmt.Sprintf("1:%v, 2:%v",
 		d.process1(nums, 80),
-		d.process1(nums, 256),
+		"d.process1(nums, 256)",
 	)
 }
 
