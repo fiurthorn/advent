@@ -18,16 +18,16 @@ var dayExample string
 var dayData string
 
 func (d Day) Run() {
-	log.Printf("Example:  %v", process(dayExample))
-	log.Printf("Example:  %v", process(dayData))
+	log.Printf("Example:  %v", d.process(dayExample))
+	log.Printf("Example:  %v", d.process(dayData))
 }
 
-func process(data string) string {
+func (d Day) process(data string) string {
 	lines := lib.Lines(data)
-	return fmt.Sprintf("1:%v", process1(lines))
+	return fmt.Sprintf("1:%v", d.process1(lines))
 }
 
-func process1(lines []string) string {
+func (d Day) process1(lines []string) string {
 	size := len(lines[0])
 
 	ms0th := make([]int, size)
@@ -43,21 +43,21 @@ func process1(lines []string) string {
 		}
 	}
 
-	gamma := parseGamma(ms0th, ms1th)
-	epsilon := parseEpsilon(ms0th, ms1th)
+	gamma := d.parseGamma(ms0th, ms1th)
+	epsilon := d.parseEpsilon(ms0th, ms1th)
 
 	oxygenLines := make([]string, len(lines))
 	copy(oxygenLines, lines)
-	oxygen := searchOxygen(oxygenLines)
+	oxygen := d.searchOxygen(oxygenLines)
 
 	co2Lines := make([]string, len(lines))
 	copy(co2Lines, lines)
-	co2 := searchCO2(co2Lines)
+	co2 := d.searchCO2(co2Lines)
 
 	return fmt.Sprintf("%v * %v = %v |  %v * %v = %v", gamma, epsilon, gamma*epsilon, oxygen, co2, oxygen*co2)
 }
 
-func searchCO2(lines []string) (oxygen int64) {
+func (d Day) searchCO2(lines []string) (oxygen int64) {
 	size := len(lines[0])
 
 	for i := 0; i < size; i++ {
@@ -87,7 +87,7 @@ func searchCO2(lines []string) (oxygen int64) {
 	return
 }
 
-func searchOxygen(lines []string) (oxygen int64) {
+func (d Day) searchOxygen(lines []string) (oxygen int64) {
 	size := len(lines[0])
 
 	for i := 0; i < size; i++ {
@@ -117,7 +117,7 @@ func searchOxygen(lines []string) (oxygen int64) {
 	return
 }
 
-func parseGamma(p0th, p1th []int) (gamma int64) {
+func (d Day) parseGamma(p0th, p1th []int) (gamma int64) {
 	size := len(p0th)
 	gammaSlice := make([]byte, size)
 	for i := 0; i < size; i++ {
@@ -131,7 +131,7 @@ func parseGamma(p0th, p1th []int) (gamma int64) {
 	return
 }
 
-func parseEpsilon(p0th, p1th []int) (gamma int64) {
+func (d Day) parseEpsilon(p0th, p1th []int) (gamma int64) {
 	size := len(p0th)
 	gammaSlice := make([]byte, size)
 	for i := 0; i < size; i++ {

@@ -18,19 +18,19 @@ var dayExample string
 var dayData string
 
 func (d Day) Run() {
-	log.Printf("Example:  %v", process(dayExample))
-	log.Printf("Solution: %v", process(dayData))
+	log.Printf("Example:  %v", d.process(dayExample))
+	log.Printf("Solution: %v", d.process(dayData))
 }
 
-func process(data string) string {
+func (d Day) process(data string) string {
 	lines := lib.Lines(data)
 	return fmt.Sprintf("simple:%v, extended: %v",
-		process1(lines),
-		process2(lines),
+		d.process1(lines),
+		d.process2(lines),
 	)
 }
 
-func process1(lines []string) string {
+func (d Day) process1(lines []string) string {
 	var depth, horizontal int
 
 	for _, line := range lines {
@@ -49,7 +49,7 @@ func process1(lines []string) string {
 	return fmt.Sprintf("%d", depth*horizontal)
 }
 
-func process2(lines []string) string {
+func (d Day) process2(lines []string) string {
 	var depth, horizontal, aim int
 
 	for _, line := range lines {

@@ -84,26 +84,26 @@ func (b *Board) or(x, y bool) bool {
 }
 
 func (d Day) Run() {
-	log.Printf("Example:  %v", process(dayExample))
-	log.Printf("Solution: %v", process(dayData))
+	log.Printf("Example:  %v", d.process(dayExample))
+	log.Printf("Solution: %v", d.process(dayData))
 }
 
-func process(data string) string {
+func (d Day) process(data string) string {
 	lines := lib.Lines(data)
 	return fmt.Sprintf("1:%v 2:%v",
-		process1(lines),
-		process2(lines),
+		d.process1(lines),
+		d.process2(lines),
 	)
 }
 
-func process1(lines []string) string {
-	draws := parsedraws(lines[0])
+func (d Day) process1(lines []string) string {
+	draws := d.parsedraws(lines[0])
 
 	lines = lines[2:]
 	boards := []*Board{}
 	for i, length := 0, 1+len(lines)/6; i < length; i++ {
 		values := lines[6*i : 6*i+5]
-		board := parseBoard(strings.Join(values, " "))
+		board := d.parseBoard(strings.Join(values, " "))
 		boards = append(boards, &board)
 	}
 
@@ -120,16 +120,16 @@ func process1(lines []string) string {
 	return ""
 }
 
-func process2(lines []string) string {
-	draws := parsedraws(lines[0])
+func (d Day) process2(lines []string) string {
+	draws := d.parsedraws(lines[0])
 
 	lines = lines[2:]
-	won := last(lines, draws)
+	won := d.last(lines, draws)
 
 	boards := []*Board{}
 	for i, length := 0, 1+len(lines)/6; i < length; i++ {
 		values := lines[6*i : 6*i+5]
-		board := parseBoard(strings.Join(values, " "))
+		board := d.parseBoard(strings.Join(values, " "))
 		boards = append(boards, &board)
 	}
 
@@ -147,11 +147,11 @@ func process2(lines []string) string {
 
 }
 
-func last(lines []string, draws []int) (current int) {
+func (d Day) last(lines []string, draws []int) (current int) {
 	boards := []*Board{}
 	for i, length := 0, 1+len(lines)/6; i < length; i++ {
 		values := lines[6*i : 6*i+5]
-		board := parseBoard(strings.Join(values, " "))
+		board := d.parseBoard(strings.Join(values, " "))
 		boards = append(boards, &board)
 	}
 
@@ -174,7 +174,7 @@ func last(lines []string, draws []int) (current int) {
 	return
 }
 
-func parseBoard(data string) (result Board) {
+func (d Day) parseBoard(data string) (result Board) {
 	values := strings.SplitAfter(data, " ")
 
 	for _, value := range values {
@@ -187,7 +187,7 @@ func parseBoard(data string) (result Board) {
 	return
 }
 
-func parsedraws(line string) (result []int) {
+func (d Day) parsedraws(line string) (result []int) {
 	nums := strings.Split(line, ",")
 	for _, num := range nums {
 		result = append(result, lib.Atoi(num))
