@@ -7,6 +7,8 @@ import (
 
 	"github.com/fiurthorn/advent/day01"
 	"github.com/fiurthorn/advent/day02"
+	"github.com/fiurthorn/advent/day03"
+	"github.com/fiurthorn/advent/day04"
 )
 
 type Solution interface {
@@ -18,6 +20,8 @@ var (
 	solutions = []Solution{
 		day01.Day{},
 		day02.Day{},
+		day03.Day{},
+		day04.Day{},
 	}
 )
 
