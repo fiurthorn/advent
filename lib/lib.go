@@ -20,3 +20,11 @@ func Lines(lines string) []string {
 	}
 	return strings.Split(lines, "\n")
 }
+
+func Numbers(line string) (result []int) {
+	nums := strings.Split(line, ",")
+	for _, num := range nums {
+		result = append(result, Atoi(num))
+	}
+	return
+}

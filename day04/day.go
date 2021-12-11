@@ -97,7 +97,7 @@ func (d Day) process(data string) string {
 }
 
 func (d Day) process1(lines []string) string {
-	draws := d.parsedraws(lines[0])
+	draws := lib.Numbers(lines[0])
 
 	lines = lines[2:]
 	boards := []*Board{}
@@ -121,7 +121,7 @@ func (d Day) process1(lines []string) string {
 }
 
 func (d Day) process2(lines []string) string {
-	draws := d.parsedraws(lines[0])
+	draws := lib.Numbers(lines[0])
 
 	lines = lines[2:]
 	won := d.last(lines, draws)
@@ -184,13 +184,5 @@ func (d Day) parseBoard(data string) (result Board) {
 		}
 	}
 
-	return
-}
-
-func (d Day) parsedraws(line string) (result []int) {
-	nums := strings.Split(line, ",")
-	for _, num := range nums {
-		result = append(result, lib.Atoi(num))
-	}
 	return
 }
