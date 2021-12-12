@@ -28,3 +28,8 @@ func Numbers(line string) (result []int) {
 	}
 	return
 }
+
+func Strings(line string) (result []string) {
+	result = strings.Split(line, " ")
+	return
+}
