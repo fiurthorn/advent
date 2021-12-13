@@ -58,7 +58,7 @@ type Point struct {
 }
 
 func (p Point) String() string {
-	return fmt.Sprintf("(%2d{%2d}[%2d])", p.Value, p.Mark, p.Index)
+	return fmt.Sprintf("(%2d{%4d}[%4d])", p.Value, p.Mark, p.Index)
 }
 
 func (f Field) String() string {
@@ -113,7 +113,6 @@ func (f *Field) SearchBasin() [3]int {
 		for y := 0; y < size; y++ {
 			index := f.Points[y][x].Mark
 			if index >= 0 {
-				log.Println(index)
 				result[index]++
 			}
 		}
@@ -138,22 +137,18 @@ func (f *Field) SearchBasin() [3]int {
 
 func (f *Field) detect(basin, x, y int, ox, oy int, depth string) {
 	value := &f.Points[y][x]
-	if value.Mark >= 0 {
+	if value.Mark >= 0 || value.Value == 9 {
 		return
 	}
+	value.Mark = basin
 	nachbar := f.validates(x, y, ox, oy)
-	// log.Println(depth, basin, value, nachbar)
 
-	// log.Println(basin, depth, nachbar)
 	for ni := 0; ni < len(nachbar); ni++ {
 		n := nachbar[ni]
 		nvalue := &f.Points[n[1]][n[0]]
-		// log.Println(depth, basin, nvalue, value)
-		// if nvalue.Value-value.Value == 1 {
 		if nvalue.Value >= value.Value {
 			if nvalue.Mark < 0 {
 				value.Mark = basin
-				// log.Println(depth, basin, n, value, nvalue)
 				f.detect(basin, n[0], n[1], x, y, depth+" ")
 			}
 		}
