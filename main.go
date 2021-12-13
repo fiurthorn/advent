@@ -18,6 +18,7 @@ import (
 	"github.com/fiurthorn/advent/day09"
 	"github.com/fiurthorn/advent/day10"
 	"github.com/fiurthorn/advent/day11"
+	"github.com/fiurthorn/advent/day12"
 	"github.com/fiurthorn/advent/lib"
 )
 
@@ -33,7 +34,7 @@ var (
 	solutions = []Solution{
 		day01.Day{}, day02.Day{}, day03.Day{}, day04.Day{}, day05.Day{},
 		day06.Day{}, day07.Day{}, day08.Day{}, day09.Day{}, day10.Day{},
-		day11.Day{},
+		day11.Day{}, day12.Day{},
 	}
 )
 

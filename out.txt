@@ -1,0 +1,37 @@
+start: 12
+ all : 0s
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xc0000005 code=0x0 addr=0x0 pc=0x60b1e0]
+
+goroutine 1 [running]:
+github.com/fiurthorn/advent/lib.(*StringSet).Add(...)
+	C:/Users/s.weinmann/workspace/advent/lib/lib.go:102
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebd10, 0x634ae3, {0x634ae8, 0x571099})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:120 +0x60
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebce0, 0xc0000d6eb0, {0x634ae8, 0x2})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebcb0, 0xc0000d6ea8, {0x634ae8, 0x2})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebc80, 0xc0000d6ea0, {0x634ae8, 0x2})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebc50, 0xc0000d6e98, {0x634ae8, 0x2})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebc20, 0xc0000d6e90, {0x634ae8, 0x2})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebbf0, 0xc0000d6e88, {0x0, 0x0})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:127 +0x28d
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebbc0, 0xc0000d6e80, {0x0, 0x0})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0x61ab80}, 0xc0000ebb90, 0xc0000d6e78, {0x0, 0x0})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.traverse2({0xc000087c48}, 0x1, 0xc0000d6e70, {0x0, 0x0})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:125 +0x1e8
+github.com/fiurthorn/advent/day12.Day.process2({0x634ae0}, {0xc00008c000, 0x12, 0xc000087de0})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:154 +0x147
+github.com/fiurthorn/advent/day12.Day.process({0xc000087e70}, {0x634ae0, 0x61b7ac4d})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:31 +0x88
+github.com/fiurthorn/advent/day12.Day.Run({0x62bd58})
+	C:/Users/s.weinmann/workspace/advent/day12/day.go:23 +0x27
+main.main()
+	C:/Users/s.weinmann/workspace/advent/main.go:64 +0x1b4
+exit status 2
