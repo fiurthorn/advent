@@ -84,6 +84,7 @@ func (d Day) process1(lines []string) string {
 	for i := 0; i < 10; i++ {
 		list.Grow(cmd)
 	}
+
 	min, max := -1, -1
 	for _, v := range list.Index() {
 		if max == -1 {
@@ -102,5 +103,74 @@ func (d Day) process1(lines []string) string {
 }
 
 func (d Day) process2(lines []string) string {
-	return fmt.Sprintf("%v", 0)
+	init := lines[0]
+	var list = make(map[string]int64)
+	var nList = make(map[string]int64)
+
+	for i := 0; i < len(init)-1; i++ {
+		list[string([]byte{init[i], init[i+1]})] = 1
+	}
+
+	cmd := map[string]byte{}
+	for i := 2; i < len(lines); i++ {
+		part := strings.Split(lines[i], " -> ")
+		cmd[part[0]] = byte(part[1][0])
+	}
+
+	// log.Println(list)
+	for i := 0; i < 40; i++ {
+		for k, v := range list {
+			// log.Println("k", k, v)
+			r := cmd[k]
+			// log.Println("- r", string(r))
+			a, b := string([]byte{k[0], r}), string([]byte{r, k[1]})
+			// log.Println("- abv", a, nList[a], b, nList[b], " <- ", v)
+			nList[a] += v
+			nList[b] += v
+		}
+		list = make(map[string]int64)
+		sum := int64(0)
+		for k, v := range nList {
+			sum += v
+			list[k] = v
+		}
+		nList = make(map[string]int64)
+		// log.Println(sum, list)
+	}
+
+	sums1 := make(map[byte]int64)
+	sums2 := make(map[byte]int64)
+	for k, v := range list {
+		sums1[k[0]] += v
+		sums2[k[1]] += v
+	}
+
+	min1, max1 := int64(-1), int64(-1)
+	for _, v := range sums1 {
+		if max1 == -1 {
+			max1 = v
+		} else if v > max1 {
+			max1 = v
+		}
+		if min1 == -1 {
+			min1 = v
+		} else if v < min1 {
+			min1 = v
+		}
+	}
+	min2, max2 := int64(-1), int64(-1)
+	for _, v := range sums2 {
+		if max2 == -1 {
+			max2 = v
+		} else if v > max2 {
+			max2 = v
+		}
+		if min2 == -1 {
+			min2 = v
+		} else if v < min2 {
+			min2 = v
+		}
+	}
+
+	return fmt.Sprintf("%d - %d = %v", (max1+max2)/2, (min1+min2)/2, (max1-min1+max2-min2)/2)
 }
