@@ -34,10 +34,10 @@ func main() {
 	if all {
 		for index, solution := range solutions[year] {
 			if solution != nil {
-				log.Printf("start: %2d", index+1)
+				log.Printf("%d start: %2d", year, index+1)
 				start := time.Now()
 				solution.Run()
-				log.Printf(" end : %2d in %v", index+1, time.Since(start))
+				log.Printf("%d end : %2d in %v", year, index+1, time.Since(start))
 			}
 		}
 	} else if day > 0 && day <= len(solutions[year]) {
@@ -59,7 +59,7 @@ func parseDay(value string) error {
 	}
 
 	day = lib.Atoi(value)
-	if day <= 0 || day > len(solutions) {
+	if day <= 0 || day > len(solutions[year]) {
 		return flag.ErrHelp
 	}
 

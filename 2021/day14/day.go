@@ -117,14 +117,10 @@ func (d Day) process2(lines []string) string {
 		cmd[part[0]] = byte(part[1][0])
 	}
 
-	// log.Println(list)
 	for i := 0; i < 40; i++ {
 		for k, v := range list {
-			// log.Println("k", k, v)
 			r := cmd[k]
-			// log.Println("- r", string(r))
 			a, b := string([]byte{k[0], r}), string([]byte{r, k[1]})
-			// log.Println("- abv", a, nList[a], b, nList[b], " <- ", v)
 			nList[a] += v
 			nList[b] += v
 		}
@@ -135,7 +131,6 @@ func (d Day) process2(lines []string) string {
 			list[k] = v
 		}
 		nList = make(map[string]int64)
-		// log.Println(sum, list)
 	}
 
 	sums1 := make(map[byte]int64)
