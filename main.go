@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	year2020 "github.com/fiurthorn/advent/2020"
 	year2021 "github.com/fiurthorn/advent/2021"
 	"github.com/fiurthorn/advent/lib"
 )
@@ -18,6 +19,7 @@ var (
 
 	solutions = map[int][]lib.Solution{
 		2021: year2021.Solutions,
+		2020: year2020.Solutions,
 	}
 )
 
